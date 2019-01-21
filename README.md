@@ -1,5 +1,3 @@
-# MOVED TO https://github.com/Wikinota/wikinota
-
 # wikinota
 wikinota is a selfhosted platform for you ideas and thoughts.
 The main focus is set to archiving and inspire new knowledge, through the structuring of thought paths.
