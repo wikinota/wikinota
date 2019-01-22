@@ -1,0 +1,24 @@
+{
+  "name": "wikinota",
+  "version": "5.0.1",
+  "description": "A blazing fast personal Wiki for your life.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wikinota/wikinota.git"
+  },
+  "keywords": [
+    "wiki",
+    "personal",
+    "life"
+  ],
+  "author": "Marvin Heidenstedt",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/wikinota/wikinota/issues"
+  },
+  "homepage": "http://wikinota.org"
+}
