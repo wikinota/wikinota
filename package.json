@@ -22,6 +22,8 @@
   },
   "homepage": "http://wikinota.org",
   "dependencies": {
-    "redom": "~3.12.3"
+    "redom": "~3.12.3",
+    "typescript": "^3.2.4",
+    "tslint": "^5.12.1"
   }
 }
