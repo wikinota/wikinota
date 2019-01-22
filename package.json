@@ -20,11 +20,5 @@
   "bugs": {
     "url": "https://github.com/wikinota/wikinota/issues"
   },
-  "homepage": "http://wikinota.org",
-  "dependencies": {
-    "redom": "~3.12.3",
-    "@types/redom": "^3.12.0",
-    "typescript": "^3.2.4",
-    "tslint": "^5.12.1"
-  }
+  "homepage": "http://wikinota.org"
 }
