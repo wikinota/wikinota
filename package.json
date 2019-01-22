@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/wikinota/wikinota/issues"
   },
-  "homepage": "http://wikinota.org"
+  "homepage": "http://wikinota.org",
+  "dependencies": {
+    "redom": "~3.12.3"
+  }
 }
