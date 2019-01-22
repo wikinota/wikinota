@@ -1,4 +1,4 @@
-import { el, mount, setStyle } from "/js/libs/redom.es.min.js";
+import { el, mount, setStyle } from "../libs/redom.es.min.js";
 
 
 export default function (target) {

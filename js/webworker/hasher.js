@@ -1,6 +1,6 @@
 /*global importScripts*/
 /*global forge*/
-importScripts("/js/libs/forge.min.js");   
+importScripts("../libs/forge.min.js");   
 
 
 onmessage = function (e) {
