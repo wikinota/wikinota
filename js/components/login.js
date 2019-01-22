@@ -18,7 +18,7 @@ export default function (target) {
 	const hasher = () => {
 		if (hashWorker != undefined) hashWorker.terminate();
 
-		hashWorker = new Worker("/js/webworker/hasher.js");
+		hashWorker = new Worker("./js/webworker/hasher.js");
 		hashWorker.postMessage([emailField.value, pwField.value]);
 		loadingIndicator.style.display = "block";
 
