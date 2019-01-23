@@ -22,4 +22,4 @@ PreAlpha
 
 
 ## Demo
-[Live Demo](https://wikinota.github.io/wikinota/)
+[Live Demo](https://wikinota.github.io/wikinota/dist)
