@@ -16,10 +16,10 @@
     "webpack-cli": "^3.2.1",
     "worker-loader": "^2.0.0"
   },
-  "dependencies":{
-    "redom":"^3.18.0",
-    "@types/redom":"^3.12.0",
-    "node-forge":"^0.7.6",
-    "@types/node-forge":"^0.7.11"
+  "dependencies": {
+    "redom": "^3.18.0",
+    "@types/redom": "^3.12.0",
+    "node-forge": "^0.7.6",
+    "@types/node-forge": "^0.7.11"
   }
 }

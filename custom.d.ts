@@ -1,4 +1,4 @@
-declare module "webworker/*" {
+declare module "webworker/hasher.worker.ts" {
     class WebpackWorker extends Worker {
       constructor();
     }
