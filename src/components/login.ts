@@ -1,11 +1,12 @@
-import { el, mount, setStyle } from "../libs/redom.es.min.js";
+import { el, mount, setStyle } from "redom";
+// import hashWorkerModule from "webworker/hasher";
+import WorkerHash from 'webworker/hasher.worker.ts';
 
+export default function (target: HTMLElement) {
+	const pwField = el("input", { type: "password" }) as HTMLInputElement;
+	const emailField = el("input", { type: "email" }) as HTMLInputElement;
 
-export default function (target) {
-	const pwField = el("input", { type: "password" });
-	const emailField = el("input", { type: "email" });
-
-	let hashWorker;
+	let hashWorker: Worker;
 
 	const loginForm = el("form",
 		emailField, pwField
@@ -18,7 +19,7 @@ export default function (target) {
 	const hasher = () => {
 		if (hashWorker != undefined) hashWorker.terminate();
 
-		hashWorker = new Worker("./js/webworker/hasher.js");
+		hashWorker = new WorkerHash();
 		hashWorker.postMessage([emailField.value, pwField.value]);
 		loadingIndicator.style.display = "block";
 

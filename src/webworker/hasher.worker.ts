@@ -1,7 +1,4 @@
-/*global importScripts*/
-/*global forge*/
-importScripts("../libs/forge.min.js");   
-
+const forge = require('node-forge');
 
 onmessage = function (e) {
 	const email = e.data[0];

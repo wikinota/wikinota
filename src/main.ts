@@ -1,5 +1,5 @@
-import { el, mount } from "../js/libs/redom.es.min.js";
-import loginCom from "./components/login.js";
+import { el, mount } from "redom";
+import loginCom from "components/login";
 
 const hello = el("h1", "Hell WikiNota");
 const foo = el("div","Loading");
