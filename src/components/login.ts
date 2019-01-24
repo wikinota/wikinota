@@ -1,38 +1,81 @@
 import { el, mount, setStyle } from "redom";
-// import hashWorkerModule from "webworker/hasher";
 import WorkerHash from 'webworker/hasher.worker.ts';
 
-export default function (target: HTMLElement) {
-	const pwField = el("input", { type: "password" }) as HTMLInputElement;
-	const emailField = el("input", { type: "email" }) as HTMLInputElement;
+export default class LoginCom extends HTMLElement {
 
-	let hashWorker: Worker;
+	emailField: HTMLInputElement = undefined;
+	password: HTMLInputElement = undefined;
+	send: HTMLButtonElement = undefined;
+	loadingIndicator: HTMLDivElement = undefined;
+	hashOutput: HTMLDivElement = undefined;
+	hashWorker: Worker;
 
-	const loginForm = el("form",
-		emailField, pwField
-	);
 
-	const loadingIndicator = el("div", "LOADING……");
-	const hashField = el("div", "no Hash");
-	setStyle(hashField, { "word-break": "break-all" });
+	constructor() {
+		super();
+		const shadowRoot = this.attachShadow({ mode: 'open' });
 
-	const hasher = () => {
-		if (hashWorker != undefined) hashWorker.terminate();
+		const styles = `
+			:host  {
+				margin: 10px;
+			}
+            header {
+                top: 0;
+                position: sticky;
+                font-family: fa;
+                width: 100%;
+                height: 35px;
+                background: #03c0ff;
+                color: #000;
+                padding:0 5px;
+            }
+            span {
+                height: 100%;
+                text-align: center;
+                line-height: 35px;
+                font-size: 20px;
+			}
+			#loadingIndicator {
+				display: none;
+			}
+			#hashOutput {
+				word-break: break-all;
+			}
+        `;
 
-		hashWorker = new WorkerHash();
-		hashWorker.postMessage([emailField.value, pwField.value]);
-		loadingIndicator.style.display = "block";
+		shadowRoot.innerHTML = `
+            <style>${styles}</style>
+			<div>
+				<input id="email"></input>
+				<input id="password"></input>
+				<button id="send">Send</button>
+				<div id="loadingIndicator">Loading…</div>
+			</div>
+			<div id="hashOutput">
+			</div>
+		`;
 
-		hashWorker.onmessage = function (e) {
-			hashField.textContent = e.data;
-			loadingIndicator.style.display = "none";
+		this.emailField = this.shadowRoot.querySelector('#email');
+		this.password = this.shadowRoot.querySelector('#password');
+		this.send = this.shadowRoot.querySelector('#send');
+		this.loadingIndicator = this.shadowRoot.querySelector('#loadingIndicator');
+		this.hashOutput = this.shadowRoot.querySelector('#hashOutput');
+
+		this.send.onclick = () => {
+			this.calculateHash();
 		};
-	};
+	}
 
-	emailField.oninput = hasher;
-	pwField.oninput = hasher;
+	calculateHash() {
+		if (this.hashWorker != undefined) this.hashWorker.terminate();
 
-	mount(target, loginForm);
-	mount(target, loadingIndicator);
-	mount(target, hashField);
+		this.hashWorker = new WorkerHash();
+		this.hashWorker.postMessage([this.emailField.value, this.password.value]);
+		this.loadingIndicator.style.display = "block";
+
+		this.hashWorker.onmessage = (e) => {
+			this.hashOutput.textContent = e.data;
+			this.loadingIndicator.style.display = "none";
+		};
+	}
 }
