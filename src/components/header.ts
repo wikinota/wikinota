@@ -4,7 +4,6 @@ export default class HeaderCom extends HTMLElement {
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
 
-        // We define some inline styles using a template string
         const styles = `
             header {
                 top: 0;
@@ -24,7 +23,6 @@ export default class HeaderCom extends HTMLElement {
             }
         `;
 
-        // We provide the shadow root with some HTML
         shadowRoot.innerHTML = `
             <style>${styles}</style>
             <header><span>🔍</span></header>
