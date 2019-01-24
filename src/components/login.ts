@@ -1,4 +1,3 @@
-import { el, mount, setStyle } from "redom";
 import WorkerHash from 'webworker/hasher.worker.ts';
 
 export default class LoginCom extends HTMLElement {
