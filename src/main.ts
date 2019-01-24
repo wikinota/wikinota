@@ -1,9 +1,5 @@
-import { el, mount } from "redom";
 import loginCom from "components/login";
+import headerCom from "components/header";
+console.log(loginCom);
 
-const hello = el("h1", "Hell WikiNota");
-const foo = el("div","Loading");
-loginCom(foo);
-mount(document.body, hello);
-mount(document.body, foo);
-console.info("Hello Worlk!");
+customElements.define('header-com', headerCom);
