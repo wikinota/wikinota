@@ -10,7 +10,9 @@
         "lib": ["dom","es6","scripthost","webworker"],
         "rootDirs": [
             "src/components",
-            "src/webworker"
+            "src/webworker",
+            "src/logic",
+            "src/logic/indexDB"
         ]
     }
 }

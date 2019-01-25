@@ -1,4 +1,5 @@
 import WorkerHash from 'webworker/hasher.worker.ts';
+import PasswordStore from 'logic/indexDB/PasswordStore'
 
 export default class LoginCom extends HTMLElement {
 
@@ -73,6 +74,8 @@ export default class LoginCom extends HTMLElement {
 		this.loadingIndicator.style.display = "block";
 
 		this.hashWorker.onmessage = (e) => {
+			const pwstore = new PasswordStore();
+			pwstore.userPw = e.data;
 			this.hashOutput.textContent = e.data;
 			this.loadingIndicator.style.display = "none";
 		};
