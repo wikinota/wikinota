@@ -1,4 +1,4 @@
-import {cStyle} from "logic/CustomStyleIO";
+import { cStyle } from "logic/CustomStyleIO";
 
 export default class HeaderCom extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -15,7 +15,7 @@ export default class HeaderCom extends HTMLElement {
             top: 0;
             position: sticky;
             font-family: fa;
-            width: 100%;
+            width: calc(100% - 10px);
             height: 35px;
             background: #03c0ff;
             color: #000;
