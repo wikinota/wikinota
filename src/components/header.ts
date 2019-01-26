@@ -10,7 +10,7 @@ export default class HeaderCom extends HTMLElement {
     }
 
     get composedStyle() {
-        let style = `
+        return cStyle.general + "\n" + `
         header {
             top: 0;
             position: sticky;
@@ -49,9 +49,8 @@ export default class HeaderCom extends HTMLElement {
             display: inline-block;
             transform: translateX(-120%);
         }
-        `;
 
-        return style + "\n" + cStyle.header;
+        `+ "\n" + cStyle.header;
     }
 
     newRender() {

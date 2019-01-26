@@ -42,9 +42,6 @@ export default class CustomStyleIO {
             console.debug("Custom Template was valid but the isSet property is on false.");
             return;
         }
-
-        window.customStyle = this.customTemplate;
-
     }
     /**
      * sets the custom template to the local storage

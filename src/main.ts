@@ -3,11 +3,14 @@
  * License: GNU Affero General Public License v3.0
  */
 
-import CustomTemplateIO from "logic/CustomStyleIO";
+import { cStyle } from "logic/CustomStyleIO";
 import loginCom from "components/login";
 import headerCom from "components/header";
-new CustomTemplateIO;
 
+var style = document.createElement('style');
+style.type = 'text/css';
+style.appendChild(document.createTextNode(cStyle.general));
+document.getElementsByTagName('head')[0].appendChild(style);
 
 customElements.define('login-com', loginCom);
 customElements.define('header-com', headerCom);

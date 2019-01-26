@@ -1,5 +1,7 @@
 import WorkerHash from 'webworker/hasher.worker.ts';
-import userData from 'logic/userData'
+import userData from 'logic/userData';
+import { cStyle } from "logic/CustomStyleIO";
+
 
 export default class LoginCom extends HTMLElement {
 
@@ -15,7 +17,7 @@ export default class LoginCom extends HTMLElement {
 		super();
 		const shadowRoot = this.attachShadow({ mode: 'open' });
 
-		const styles = `
+		const styles = cStyle.general + "\n" + `
 			:host  {
 				margin: 10px;
 			}
@@ -41,7 +43,7 @@ export default class LoginCom extends HTMLElement {
 			#hashOutput {
 				word-break: break-all;
 			}
-        `;
+        `+ "\n" + cStyle.login;
 
 		shadowRoot.innerHTML = `
             <style>${styles}</style>
