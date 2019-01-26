@@ -17,33 +17,34 @@ export default class CustomStyleIO {
     customTemplate: CustomStyle = undefined;
     constructor() {
         let customTemplateFromStore = localStorage.getItem('customTemplate');
-        if (customTemplateFromStore != undefined) {
-
-            customTemplateFromStore = this.preventXSS(customTemplateFromStore);
-            try {
-                this.customTemplate = JSON.parse(customTemplateFromStore);
-            }
-            catch (e) {
-                console.error("Custom Template was not valid JSON!");
-                return;
-            }
-
-            if (!(
-                (this.customTemplate as any).isSet == true ||
-                (this.customTemplate as any).isSet == false
-            )) {
-                console.error("Custom Template was not valid!", this.customTemplate);
-                return;
-            }
-            if ((this.customTemplate as any).isSet == false) {
-                console.debug("Custom Template was valid but the isSet property is on false.");
-                return;
-            }
-
-            window.customStyle = this.customTemplate;
-        } else {
+        if (customTemplateFromStore == undefined || customTemplateFromStore == "") {
             console.debug("No CustomTemplate was set.");
+            return;
         }
+
+        customTemplateFromStore = this.preventXSS(customTemplateFromStore);
+        try {
+            this.customTemplate = JSON.parse(customTemplateFromStore);
+        }
+        catch (e) {
+            console.error("Custom Template was not valid JSON!");
+            return;
+        }
+
+        if (!(
+            (this.customTemplate as any).isSet == true ||
+            (this.customTemplate as any).isSet == false
+        )) {
+            console.error("Custom Template was not valid!", this.customTemplate);
+            return;
+        }
+        if ((this.customTemplate as any).isSet == false) {
+            console.debug("Custom Template was valid but the isSet property is on false.");
+            return;
+        }
+
+        window.customStyle = this.customTemplate;
+
     }
     /**
      * sets the custom template to the local storage
