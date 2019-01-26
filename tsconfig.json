@@ -7,12 +7,17 @@
         "target": "es6",
         "jsx": "react",
         "allowJs": true,
-        "lib": ["dom","es6","scripthost","webworker"],
+        "lib": [
+            "dom",
+            "es6",
+            "scripthost",
+            "webworker"
+        ],
         "rootDirs": [
             "src/components",
             "src/webworker",
             "src/logic",
             "src/logic/indexDB"
-        ]
-    }
+        ],
+    },
 }

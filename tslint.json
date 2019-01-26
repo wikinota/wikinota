@@ -1,0 +1,17 @@
+{
+    "extends": "tslint:recommended",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rules": {
+        "max-line-length": [
+            true,
+            100
+        ],
+    },
+    "jsRules": {
+        "max-line-length": [
+            true,
+            100
+        ],
+    }
+}

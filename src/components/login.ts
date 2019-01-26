@@ -1,5 +1,5 @@
 import WorkerHash from 'webworker/hasher.worker.ts';
-import PasswordStore from 'logic/indexDB/PasswordStore'
+import PasswordStore from 'logic/PasswordStore'
 
 export default class LoginCom extends HTMLElement {
 
