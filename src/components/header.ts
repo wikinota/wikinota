@@ -16,28 +16,31 @@ export default class HeaderCom extends HTMLElement {
             position: sticky;
             font-family: fa;
             width: calc(100% - 10px);
-            height: 35px;
-            background: #03c0ff;
-            color: #000;
+            height: var(--default-dark-header);
+            background: #008669;
+            color: #fff;
             padding:0 5px;
+            display: flex;
+            align-items: center;
         }
         span {
+            height: var(--default-dark-header);
             width: auto;
             display: inline-block;
-            height: 100%;
-            text-align: center;
-            line-height: 35px;
             font-size: 20px;
             padding:0;
             margin: 0;
+            vertical-align:middle;
+            positon: relative;
         }
-        #searchBar input,
-        #searchBar .fa-times {
-            display: none;
+        span * {
+            position: relative;
+            top: 50%; 
+            transform: translate(0, -50%)
         }
-        #searchBar.open input {
+        #searchBar.open input{
             display: inline-block;
-            height: 100%;
+            height: var(--default-dark-header);
             padding: 0;
             margin: 0;
             border: 0;
@@ -45,9 +48,13 @@ export default class HeaderCom extends HTMLElement {
         #searchBar.open .fa-search {
             display: inline-block;
         }
-        #searchBar.open .fa-times {
+        #searchBar input,
+        #searchBar #searchBarCloseButton{
+            display: none;
+        }
+        #searchBar.open #searchBarCloseButton {
             display: inline-block;
-            transform: translateX(-120%);
+            color: #000;
         }
 
         `+ "\n" + cStyle.header;
@@ -57,9 +64,15 @@ export default class HeaderCom extends HTMLElement {
         const shadowRoot = this.shadowRootDom
 
         shadowRoot.innerHTML = `
-        <style>${this.composedStyle}</style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
-        <header><span id="searchBar"><input></input><i id="searchBarCloseButton" class="fas fa-times"></i><i id="searchBarButton" class="fas fa-search"></i></span></header>
+        <style>${this.composedStyle}</style>
+        <header>
+        <span id="searchBar">
+            <input></input>
+            <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
+            <span id="searchBarButton" ><i class="fas fa-search"></i></span>
+        </span>
+        </header>
         `;
 
         const searchBar = shadowRoot.getElementById("searchBar");
