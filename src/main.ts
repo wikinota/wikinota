@@ -5,6 +5,8 @@
 import { cStyle } from "logic/CustomStyleIO";
 import loginCom from "components/login";
 import headerCom from "components/header";
+import PouchDB from "pouchdb";
+PouchDB.plugin(require('transform-pouch'));
 
 var style = document.createElement('style');
 style.type = 'text/css';
