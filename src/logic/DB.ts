@@ -10,6 +10,10 @@ class DB {
         if (pouchdDBSession == undefined) {
             console.info("creating new PouchDB Session")
             pouchdDBSession = new PouchDB('documentStore');
+
+            pouchdDBSession.info().then(function (info) {
+                console.info("DB INFO:", info);
+            })
         }
     }
 }
