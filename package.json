@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "node-forge": "^0.7.6",
-    "@types/node-forge": "^0.7.11"
+    "@types/node-forge": "^0.7.11",
+    "pouchdb": "^7.0.0",
+    "@types/pouchdb": "^6.3.2"
   }
 }
