@@ -82,7 +82,7 @@ export default class PutTestDataIntoDB extends HTMLElement {
         let rId = "";
 
         for (let i = 0; i < 1000; i++) {
-            rId += Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10) + "-";
+            rId += Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10) + " ";
         }
         rId += Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);
         return rId;

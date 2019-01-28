@@ -21,6 +21,8 @@
     "@types/node-forge": "^0.7.11",
     "pouchdb": "^7.0.0",
     "@types/pouchdb": "^6.3.2",
-    "transform-pouch": "^1.1.4"
+    "transform-pouch": "^1.1.4",
+    "lunr": "^2.3.5",
+    "@types/lunr": "^2.3.1"
   }
 }
