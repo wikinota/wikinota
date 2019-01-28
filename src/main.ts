@@ -7,6 +7,7 @@ import loginCom from "components/login";
 import headerCom from "components/header";
 import DBHistory from "components/DBHistory";
 import PutTestDataIntoDB from "components/PutTestDataIntoDB";
+import InputTextContent from "components/InputTextContent";
 import DB from "logic/DB";
 new DB;
 
@@ -19,6 +20,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 customElements.define('header-com', headerCom);
 customElements.define('login-com', loginCom);
 customElements.define('puttestdataintodb-com', PutTestDataIntoDB);
+customElements.define('inputtextcontent-com', InputTextContent);
 customElements.define('dbhistory-com', DBHistory);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");
