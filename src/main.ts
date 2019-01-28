@@ -3,11 +3,8 @@
  * License: GNU Affero General Public License v3.0
  */
 import { cStyle } from "logic/CustomStyleIO";
-import loginCom from "components/login";
 import headerCom from "components/header";
-import DBHistory from "components/DBHistory";
-import PutTestDataIntoDB from "components/PutTestDataIntoDB";
-import InputTextContent from "components/InputTextContent";
+import Dashboard from "components/Dashboard";
 import DB from "logic/DB";
 new DB;
 
@@ -18,9 +15,6 @@ style.appendChild(document.createTextNode(cStyle.general));
 document.getElementsByTagName('head')[0].appendChild(style);
 
 customElements.define('header-com', headerCom);
-customElements.define('login-com', loginCom);
-customElements.define('puttestdataintodb-com', PutTestDataIntoDB);
-customElements.define('inputtextcontent-com', InputTextContent);
-customElements.define('dbhistory-com', DBHistory);
+customElements.define('dashboard-com', Dashboard);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");
