@@ -21,6 +21,8 @@ export default class Search {
                 lunrBuilder.field('textContent')
                 // lunrBuilder.field('tags')
 
+                //TODO search subarrays if list is to long for main array
+
                 for (const row of result.rows) {
                     console.log("ROW", row);
                     lunrBuilder.add(
