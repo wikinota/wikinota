@@ -7,9 +7,6 @@ import headerCom from "components/header";
 import Dashboard from "components/Dashboard";
 import DB from "logic/DB";
 new DB;
-import Search from "logic/Search";
-new Search;
-
 
 var style = document.createElement('style');
 style.type = 'text/css';

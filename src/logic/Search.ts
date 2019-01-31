@@ -12,19 +12,17 @@ export default class Search {
             startkey: 'bar',
             endkey: 'quux'
         }).then(function (result) {
-            console.log("ALL DOCS:", result);
             console.debug("Indexing starting");
             lunrFullTextIndex = lunr((lunrBuilder) => {
                 lunrBuilder.ref('id')
                 lunrBuilder.field('DocId')
                 lunrBuilder.field('name')
                 lunrBuilder.field('textContent')
-                // lunrBuilder.field('tags')
+                lunrBuilder.field('tags')
 
                 //TODO search subarrays if list is to long for main array
 
                 for (const row of result.rows) {
-                    console.log("ROW", row);
                     lunrBuilder.add(
                         {
                             id: row.key,
