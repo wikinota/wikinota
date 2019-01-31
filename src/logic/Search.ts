@@ -1,8 +1,10 @@
 import lunr from "lunr";
 
+/** 
+ * TODO push indexing in service or webworker
+ */
 export default class Search {
     constructor() {
-        this.indexAllFiles();
     }
 
     indexAllFiles() {

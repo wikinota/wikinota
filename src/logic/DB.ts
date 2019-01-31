@@ -22,7 +22,8 @@ class DB {
     initIndexer() {
         console.log("INDEX");
         // index all
-        new Search();
+        const searchSessoin = new Search();
+        searchSessoin.indexAllFiles();
 
         // index future changes
         pouchdDBSession.changes({
@@ -31,7 +32,7 @@ class DB {
             include_docs: true
         }).on('change', change => {
             // if change happen, rebuild the index.
-            new Search();
+            searchSessoin.indexAllFiles();
         });
     }
 }

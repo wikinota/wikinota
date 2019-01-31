@@ -1,4 +1,5 @@
 import { cStyle } from "logic/CustomStyleIO";
+import Tooltip from "components/tooltip";
 
 export default class HeaderCom extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -72,18 +73,27 @@ export default class HeaderCom extends HTMLElement {
             <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
             <span id="searchBarButton" ><i class="fas fa-search"></i></span>
         </span>
+        <tooltip-com id="searchTooltip" hidden>
+            Hellow World!
+        </tooltip-com>
         </header>
         `;
 
+        customElements.define('tooltip-com', Tooltip);
+
         const searchBar = shadowRoot.getElementById("searchBar");
         const searchBarButton = shadowRoot.getElementById("searchBarButton");
+        const searchTooltip = shadowRoot.getElementById("searchTooltip");
+
         searchBarButton.onclick = () => {
             searchBar.classList.add("open");
+            searchTooltip.removeAttribute("hidden");
         }
 
         const searchBarCloseButton = shadowRoot.getElementById("searchBarCloseButton");
         searchBarCloseButton.onclick = () => {
             searchBar.classList.remove("open");
+            searchTooltip.setAttribute("hidden", "");
         }
     }
 }
