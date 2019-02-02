@@ -21,7 +21,25 @@ export default class textContentView extends HTMLElement {
         shadowRoot.innerHTML = `
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
-        <div></div>
+        <div class="itemTextContent">
+            <div id="title">Title: ${this.getAttribute("text")}</div>
+            <hr>
+            <div id="text"></div>
+            <hr>
+            <div id="tags">Tags:</div>
+        </div>
         `;
+
+        this.goToDB(shadowRoot.getElementById("text"), shadowRoot.getElementById("tags"));
+    }
+
+    goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {
+        pouchdDBSession.get("TextContent--" + this.getAttribute("text")).then((doc: any) => {
+            console.debug("from DB:", doc);
+            textElement.innerText = doc.textContent;
+            tagsElement.innerText = doc.tags;
+        }).catch(err => {
+            console.error("ERROR:", "TextContent--" + this.getAttribute("text"), " --- ", err);
+        });
     }
 }

@@ -9,7 +9,8 @@ export default class Router {
     }
 
     routingMap: RoutingMap = {
-        "#dashboard": "dashboard-com"
+        "#dashboard": "dashboard-com",
+        "#item": "textcontent-com",
     }
 
     createRouterSession() {
@@ -28,9 +29,13 @@ export default class Router {
         // TODO check if login
         if (hash.indexOf("#") == -1) window.location.hash = "#dashboard";
 
-        const desiredComponment = this.getDesiredComponentFromHash(hash);
+        const hashParameter = hash.split("?");
+        // Get only the component of the url
+        const hashComponent = hashParameter[0];
+
+        const desiredComponment = this.getDesiredComponentFromHash(hashComponent);
         console.log("desiredComponment", desiredComponment);
-        this.giveRouterDivComponent(desiredComponment);
+        this.giveRouterDivComponent(desiredComponment, hashParameter);
     }
 
     getDesiredComponentFromHash(hash: string): string {
@@ -53,8 +58,21 @@ export default class Router {
         return "NONE";
     }
 
-    giveRouterDivComponent(component: string) {
+    giveRouterDivComponent(component: string, parameter: string[]) {
         const routerDiv = document.getElementById("routerDiv");
-        routerDiv.innerHTML = `<${component}></${component}>`;
+        // HACK makes XSS posible (need to reuse components so the event calle are reuesed)
+
+        if (parameter[0].split("=")[0] == "text") {
+            routerDiv.innerHTML = `<${"textcontent-com"}  ${parameter.join(" ")}></${component}>`;
+            return;
+        }
+
+        routerDiv.innerHTML = `<${component}  ${parameter.join(" ")}></${component}>`;
+
+
+        // prameter.forEach(item => {
+        //     const itemSplit = item.split("=");
+
+        // })
     }
 }

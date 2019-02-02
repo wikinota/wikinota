@@ -9,6 +9,7 @@ import Dashboard from "components/Dashboard";
 import PutTestDataIntoDB from "components/PutTestDataIntoDB";
 import loginCom from "components/login";
 import InputTextContent from "components/InputTextContent";
+import textContentView from "components/textContentView";
 import DBHistory from "components/DBHistory";
 import Modal from "components/modal";
 import DB from "logic/DB";
@@ -28,5 +29,6 @@ customElements.define('puttestdataintodb-com', PutTestDataIntoDB);
 customElements.define('inputtextcontent-com', InputTextContent);
 customElements.define('dbhistory-com', DBHistory);
 customElements.define('modal-com', Modal);
+customElements.define('textcontent-com', textContentView);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");

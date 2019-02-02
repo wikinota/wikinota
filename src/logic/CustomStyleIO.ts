@@ -18,7 +18,6 @@ export default class CustomStyleIO {
     constructor() {
         let customTemplateFromStore = localStorage.getItem('customTemplate');
         if (customTemplateFromStore == undefined || customTemplateFromStore == "") {
-            console.debug("No CustomTemplate was set.");
             return;
         }
 
