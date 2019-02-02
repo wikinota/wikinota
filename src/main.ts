@@ -2,11 +2,14 @@
  * GitHub: https://github.com/wikinota/wikinota
  * License: GNU Affero General Public License v3.0
  */
+import Router from "logic/Router";
 import { cStyle } from "logic/CustomStyleIO";
 import headerCom from "components/header";
 import Dashboard from "components/Dashboard";
 import DB from "logic/DB";
 new DB;
+const routersession = new Router;
+routersession.createRouterSession();
 
 var style = document.createElement('style');
 style.type = 'text/css';
