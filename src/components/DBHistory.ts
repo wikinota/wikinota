@@ -14,7 +14,12 @@ export default class DBHistory extends HTMLElement {
     get composedStyle() {
         return cStyle.general + "\n" + `
         span {
-            border: 1px solid #fff;
+            margin-left: 10px;
+            border-left: 1px solid #fff;
+        }
+        a {
+            color: #cb4b16;
+            text-decoration: none;
         }
         ` + "\n" + cStyle.header;
     }
@@ -33,10 +38,12 @@ export default class DBHistory extends HTMLElement {
     }
 
     addEventToList(doc: PouchDB.Core.ExistingDocument<{}>) {
+        console.log(doc);
         const newElement = document.createElement("div");
-        const title = document.createElement("span");
+        const title = <HTMLAnchorElement>document.createElement("a");
         const value = document.createElement("span");
-        title.innerText = doc._id;
+        title.innerText = (doc as any).name;
+        title.href = "/#item?" + doc._id;
         title.classList.add("title");
         value.innerText = ((doc as any)["textContent"] as string).slice(0, 100);
         value.classList.add("value");

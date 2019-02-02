@@ -60,9 +60,11 @@ export default class PutTestDataIntoDB extends HTMLElement {
 
     crateNewDBInput() {
         pouchdDBSession.put({
-            _id: this.randomID(),
+            _id: this.randomID() + ".text",
+            wikinotatype: "text",
             name: this.randomID(),
-            textContent: this.randomFakeText()
+            textContent: this.randomFakeText(),
+            tags: this.randomID()
         }).then((val) => {
             console.log("OKAY PUT IT THERE:", val)
         });
@@ -81,7 +83,7 @@ export default class PutTestDataIntoDB extends HTMLElement {
     randomFakeText() {
         let rId = "";
 
-        for (let i = 0; i < 1000; i++) {
+        for (let i = 0; i < 5000; i++) {
             rId += Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10) + " ";
         }
         rId += Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 10);

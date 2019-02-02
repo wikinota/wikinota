@@ -62,8 +62,8 @@ export default class Router {
         const routerDiv = document.getElementById("routerDiv");
         // HACK makes XSS posible (need to reuse components so the event calle are reuesed)
 
-        if (parameter[0].split("=")[0] == "text") {
-            routerDiv.innerHTML = `<${"textcontent-com"}  ${parameter.join(" ")}></${component}>`;
+        if (component == "textcontent-com") {
+            routerDiv.innerHTML = `<${"textcontent-com"}  item="${parameter[1]}"></${component}>`;
             return;
         }
 

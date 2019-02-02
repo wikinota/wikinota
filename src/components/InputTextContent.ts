@@ -50,7 +50,7 @@ export default class InputTextContent extends HTMLElement {
             error.classList.remove("active");
 
             pouchdDBSession.put({
-                _id: "TextContent--" + name.value,
+                _id: name.value + ".text",
                 type: "text",
                 name: name.value,
                 textContent: textContent.value,

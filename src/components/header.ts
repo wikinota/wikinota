@@ -66,7 +66,7 @@ export default class HeaderCom extends HTMLElement {
         #searchTooltip {
             margin-left: 10px;
         }
-        #searchTooltip span{
+        #searchTooltip a{
             padding: 1px;
             padding-left: 3px;
             height: auto;
@@ -78,14 +78,15 @@ export default class HeaderCom extends HTMLElement {
             vertical-align: left;
             border-bottom: 1px solid black;
         }
-        #searchTooltip span:nth-child(odd){
+        #searchTooltip a:nth-child(odd){
             background: #657b83;
         }
 
         .searchTime {
             background: black;
             border-top: 3px solid #eee;
-            padding-top: 5
+            padding-top: 12px;
+            font-size: 16px;
         }
 
         #outOfFocus {
@@ -98,6 +99,10 @@ export default class HeaderCom extends HTMLElement {
         #outOfFocus.close{
             display: none;
         }
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
         
         `+ "\n" + cStyle.header;
     }
@@ -109,6 +114,9 @@ export default class HeaderCom extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <header>
+        <a href="/dist">
+            <i class="fas fa-home"></i>
+        </a>
         <span id="searchBar">
             <input id="searchInput"></input>
             <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
@@ -118,7 +126,7 @@ export default class HeaderCom extends HTMLElement {
             Hellow World!
         </tooltip-com>
         </header>
-        <div id="outOfFocus"></div>
+        <div id="outOfFocus" class="close"></div>
         `;
 
         customElements.define('tooltip-com', Tooltip);
@@ -155,12 +163,14 @@ export default class HeaderCom extends HTMLElement {
             const input = searchInput.value;
 
             const resulte = searchForFirst100Results(input);
+            console.debug(resulte);
 
             const resultElement = document.createElement("div");
 
             resulte.forEach(item => {
-                const resultRow = document.createElement("span");
-                resultRow.innerText = item.ref;
+                const resultRow = document.createElement("a");
+                resultRow.innerText = item.ref.split(".")[0];
+                resultRow.href = "/#item?" + item.ref;
                 resultElement.appendChild(resultRow);
             });
 

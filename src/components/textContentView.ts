@@ -22,7 +22,7 @@ export default class textContentView extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <div class="itemTextContent">
-            <div id="title">Title: ${this.getAttribute("text")}</div>
+            <div id="title">Title: ${this.getAttribute("item")}</div>
             <hr>
             <div id="text"></div>
             <hr>
@@ -34,12 +34,12 @@ export default class textContentView extends HTMLElement {
     }
 
     goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {
-        pouchdDBSession.get("TextContent--" + this.getAttribute("text")).then((doc: any) => {
+        pouchdDBSession.get(this.getAttribute("item")).then((doc: any) => {
             console.debug("from DB:", doc);
             textElement.innerText = doc.textContent;
             tagsElement.innerText = doc.tags;
         }).catch(err => {
-            console.error("ERROR:", "TextContent--" + this.getAttribute("text"), " --- ", err);
+            console.error("ERROR:", "textcontent--" + this.getAttribute("text"), " --- ", err);
         });
     }
 }

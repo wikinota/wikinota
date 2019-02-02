@@ -11,10 +11,8 @@ export default class Search {
         pouchdDBSession.allDocs({
             include_docs: true,
             attachments: true,
-            startkey: 'bar',
-            endkey: 'quux'
-        }).then(function (result) {
-            console.debug("Indexing starting");
+        }).then(result => {
+            console.debug("Indexing starting", result);
             lunrFullTextIndex = lunr((lunrBuilder) => {
                 lunrBuilder.ref('id')
                 lunrBuilder.field('DocId')
@@ -22,17 +20,15 @@ export default class Search {
                 lunrBuilder.field('textContent')
                 lunrBuilder.field('tags')
 
-                //TODO search subarrays if list is to long for main array
-
+                // search subarrays if list is to long for main array
                 for (const row of result.rows) {
-                    lunrBuilder.add(
-                        {
-                            id: row.key,
-                            DocId: row.id,
-                            name: (row as any).name,
-                            textContent: (row as any).textContent,
-                            tags: (row as any).tags
-                        })
+                    if (Array.isArray(row)) {
+                        for (const subrow of row) {
+                            this.addToLunrBuilder(lunrBuilder, subrow);
+                        }
+                    } else {
+                        this.addToLunrBuilder(lunrBuilder, row);
+                    }
                 }
 
                 console.debug("Indexing finished");
@@ -41,12 +37,24 @@ export default class Search {
             console.error("ERROR BY INDEXING: ", err);
         });
     }
+
+    addToLunrBuilder(lunrBuilder: lunr.Builder, row: any) {
+        lunrBuilder.add(
+            {
+                id: row.key,
+                DocId: row.doc.name,
+                name: (row as any).doc.name,
+                textContent: (row as any).doc.textContent,
+                tags: (row as any).doc.tags
+            })
+
+    }
 }
 
 export function searchForFirst100Results(searchInput: string): lunr.Index.Result[] {
     try {
         const searchResults = lunrFullTextIndex.search(searchInput);
-        return searchResults;
+        return searchResults.splice(0, 100);
 
     } catch (error) {
         return [{ ref: error.message, score: 5, matchData: undefined }];
