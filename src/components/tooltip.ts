@@ -14,11 +14,12 @@ export default class tooltip extends HTMLElement {
         return cStyle.general + "\n" + `
             .tooltip {
                 position: absolute;
-                bottom: -40px;
-                padding: 5px;
-                margin: 10px;
-                background: blue;
+                top: 30px;
+                background: #002b36;
                 left: 0;
+                border: 2px solid #cb4b16;
+                max-height: 50vh;
+                overflow-x: auto;
             }
         ` + "\n" + cStyle.header;
     }

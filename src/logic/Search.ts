@@ -31,7 +31,7 @@ export default class Search {
                             DocId: row.id,
                             name: (row as any).name,
                             textContent: (row as any).textContent,
-                            // tags: (row as any).tags
+                            tags: (row as any).tags
                         })
                 }
 
@@ -41,4 +41,14 @@ export default class Search {
             console.error("ERROR BY INDEXING: ", err);
         });
     }
-} 
+}
+
+export function searchForFirst100Results(searchInput: string): lunr.Index.Result[] {
+    try {
+        const searchResults = lunrFullTextIndex.search(searchInput);
+        return searchResults;
+
+    } catch (error) {
+        return [{ ref: error.message, score: 5, matchData: undefined }];
+    }
+}

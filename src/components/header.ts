@@ -1,5 +1,6 @@
 import { cStyle } from "logic/CustomStyleIO";
 import Tooltip from "components/tooltip";
+import { searchForFirst100Results } from "logic/Search";
 
 export default class HeaderCom extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -58,6 +59,25 @@ export default class HeaderCom extends HTMLElement {
             color: #000;
         }
 
+        #searchTooltip {
+            margin-left: 10px;
+        }
+        #searchTooltip span{
+            padding: 1px;
+            padding-left: 3px;
+            height: auto;
+            width: auto;
+            display: block;
+            font-size: 14px;
+            margin: 0;
+            margin-bottom: 5px;
+            vertical-align: left;
+            border-bottom: 1px solid black;
+        }
+        #searchTooltip span:nth-child(odd){
+            background: #657b83;
+        }
+
         `+ "\n" + cStyle.header;
     }
 
@@ -69,7 +89,7 @@ export default class HeaderCom extends HTMLElement {
         <style>${this.composedStyle}</style>
         <header>
         <span id="searchBar">
-            <input></input>
+            <input id="searchInput"></input>
             <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
             <span id="searchBarButton" ><i class="fas fa-search"></i></span>
         </span>
@@ -94,6 +114,25 @@ export default class HeaderCom extends HTMLElement {
         searchBarCloseButton.onclick = () => {
             searchBar.classList.remove("open");
             searchTooltip.setAttribute("hidden", "");
+        }
+
+
+        const searchInput = <HTMLInputElement>shadowRoot.getElementById("searchInput");
+        searchInput.oninput = () => {
+            const input = searchInput.value;
+
+            const resulte = searchForFirst100Results(input);
+
+            const resultElement = document.createElement("div");
+
+            resulte.forEach(item => {
+                const resultRow = document.createElement("span");
+                resultRow.innerText = item.ref;
+                resultElement.appendChild(resultRow);
+            });
+
+            searchTooltip.innerHTML = "";
+            searchTooltip.appendChild(resultElement);
         }
     }
 }
