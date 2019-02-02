@@ -52,6 +52,7 @@ export default class Search {
 }
 
 export function searchForFirst100Results(searchInput: string): lunr.Index.Result[] {
+    if (searchInput.length <= 2) return [{ ref: "min search length is 3", score: 5, matchData: undefined }]
     try {
         const searchResults = lunrFullTextIndex.search(searchInput);
         return searchResults.splice(0, 100);
