@@ -24,6 +24,7 @@ export default class HeaderCom extends HTMLElement {
             padding:0 5px;
             display: flex;
             align-items: center;
+            z-index: 5000;
         }
         span {
             height: var(--default-dark-header);
@@ -57,6 +58,9 @@ export default class HeaderCom extends HTMLElement {
         #searchBar.open #searchBarCloseButton {
             display: inline-block;
             color: #000;
+            background: #eee;
+            box-sizing: border-box;
+            padding: 2px;
         }
 
         #searchTooltip {
@@ -78,6 +82,23 @@ export default class HeaderCom extends HTMLElement {
             background: #657b83;
         }
 
+        .searchTime {
+            background: black;
+            border-top: 3px solid #eee;
+            padding-top: 5
+        }
+
+        #outOfFocus {
+            position: absolute;
+            top: 35px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        #outOfFocus.close{
+            display: none;
+        }
+        
         `+ "\n" + cStyle.header;
     }
 
@@ -97,6 +118,7 @@ export default class HeaderCom extends HTMLElement {
             Hellow World!
         </tooltip-com>
         </header>
+        <div id="outOfFocus"></div>
         `;
 
         customElements.define('tooltip-com', Tooltip);
@@ -104,14 +126,23 @@ export default class HeaderCom extends HTMLElement {
         const searchBar = shadowRoot.getElementById("searchBar");
         const searchBarButton = shadowRoot.getElementById("searchBarButton");
         const searchTooltip = shadowRoot.getElementById("searchTooltip");
+        const outOfFocus = shadowRoot.getElementById("outOfFocus");
+
+        outOfFocus.onclick = () => {
+            searchBar.classList.remove("open");
+            outOfFocus.classList.add("close");
+            searchTooltip.setAttribute("hidden", "");
+        }
 
         searchBarButton.onclick = () => {
+            outOfFocus.classList.remove("close");
             searchBar.classList.add("open");
             searchTooltip.removeAttribute("hidden");
         }
 
         const searchBarCloseButton = shadowRoot.getElementById("searchBarCloseButton");
         searchBarCloseButton.onclick = () => {
+            outOfFocus.classList.add("close");
             searchBar.classList.remove("open");
             searchTooltip.setAttribute("hidden", "");
         }
@@ -119,6 +150,8 @@ export default class HeaderCom extends HTMLElement {
 
         const searchInput = <HTMLInputElement>shadowRoot.getElementById("searchInput");
         searchInput.oninput = () => {
+            const start = new Date().getTime();
+
             const input = searchInput.value;
 
             const resulte = searchForFirst100Results(input);
@@ -133,6 +166,13 @@ export default class HeaderCom extends HTMLElement {
 
             searchTooltip.innerHTML = "";
             searchTooltip.appendChild(resultElement);
+
+            const end = new Date().getTime();
+            const pastTime = end - start;
+            const pastTimeElement = document.createElement("span");
+            pastTimeElement.classList.add("searchTime");
+            pastTimeElement.innerText = "Search took: " + pastTime + "ms";
+            searchTooltip.appendChild(pastTimeElement);
         }
     }
 }

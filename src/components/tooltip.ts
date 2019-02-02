@@ -14,7 +14,8 @@ export default class tooltip extends HTMLElement {
         return cStyle.general + "\n" + `
             .tooltip {
                 position: absolute;
-                top: 30px;
+                top: 35px;
+                z-index: 5000;
                 background: #002b36;
                 left: 0;
                 border: 2px solid #cb4b16;
