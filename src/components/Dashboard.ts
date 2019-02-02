@@ -1,11 +1,5 @@
 import { cStyle } from "logic/CustomStyleIO";
 
-import PutTestDataIntoDB from "components/PutTestDataIntoDB";
-import loginCom from "components/login";
-import InputTextContent from "components/InputTextContent";
-import DBHistory from "components/DBHistory";
-import Modal from "components/modal";
-
 export default class Dashboard extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
 
@@ -38,11 +32,7 @@ export default class Dashboard extends HTMLElement {
         </modal-com>
         `;
 
-        customElements.define('login-com', loginCom);
-        customElements.define('puttestdataintodb-com', PutTestDataIntoDB);
-        customElements.define('inputtextcontent-com', InputTextContent);
-        customElements.define('dbhistory-com', DBHistory);
-        customElements.define('modal-com', Modal);
+
     }
 
     addEventListenerForShadowDom() {
