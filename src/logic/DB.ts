@@ -11,7 +11,7 @@ class DB {
         if (pouchdDBSession == undefined) {
             console.info("creating new PouchDB Session")
             pouchdDBSession = new PouchDB('documentStore');
-            pouchdDBSessionSync = PouchDB.sync('documentStore', 'http://XXXXXXX:5984/wikinota_demo', {
+            pouchdDBSessionSync = PouchDB.sync('documentStore', 'http://wikinota.org:5984/wikinota_demo', {
                 live: true,
                 retry: true
             }).on('change', function (info: any) {
@@ -28,6 +28,7 @@ class DB {
                 // a document failed to replicate (e.g. due to permissions)
             }).on('complete', function (info: any) {
                 // handle complete
+                this.searchSessoin.indexAllFiles();
                 console.debug("info", info)
             }).on('error', function (err: any) {
                 console.debug("err", err)
@@ -49,14 +50,14 @@ class DB {
         searchSessoin.indexAllFiles();
 
         // index future changes
-        pouchdDBSession.changes({
-            since: "now",
-            live: true,
-            include_docs: true
-        }).on('change', change => {
-            // if change happen, rebuild the index.
-            searchSessoin.indexAllFiles();
-        });
+        // pouchdDBSession.changes({
+        //     since: "now",
+        //     live: true,
+        //     include_docs: true
+        // }).on('change', change => {
+        //     // if change happen, rebuild the index.
+        //     searchSessoin.indexAllFiles();
+        // });
     }
 }
 export default DB;
