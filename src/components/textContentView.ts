@@ -34,6 +34,7 @@ export default class textContentView extends HTMLElement {
     }
 
     goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {
+        console.log("this.getAttribute(item)", this.getAttribute("item"))
         pouchdDBSession.get(this.getAttribute("item")).then((doc: any) => {
             console.debug("from DB:", doc);
             textElement.innerText = doc.textContent;

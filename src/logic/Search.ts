@@ -43,13 +43,24 @@ export default class Search {
     }
 }
 
-// export function searchForFirst100Results(searchInput: string): lunr.Index.Result[] {
-//     if (searchInput.length <= 2) return [{ ref: "min search length is 3", score: 5, matchData: undefined }]
-//     try {
-//         const searchResults = lunrFullTextIndex.search(searchInput);
-//         return searchResults.splice(0, 100);
+export function searchForFirst100Results(searchInput: string) {
+    if (searchInput.length <= 2) return [{ ref: "min search length is 3", score: 5, matchData: undefined }]
+    try {
+        const searchResults = searchFullTextIndex.search(
+            searchInput, {
+                fields: {
+                    name: { boost: 5 },
+                    tags: { boost: 4 },
+                    textContent: { boost: 2 }
+                },
+                boolean: "OR",
+                expand: true
+            }
+        );
+        console.log("searchResults", searchResults);
+        return searchResults.splice(0, 100);
 
-//     } catch (error) {
-//         return [{ ref: error.message, score: 5, matchData: undefined }];
-//     }
-// }
+    } catch (error) {
+        return [{ ref: error.message, score: 5, matchData: undefined }];
+    }
+}
