@@ -1,7 +1,7 @@
 declare var __webpack_public_path__: string;
 declare var pouchdDBSession: PouchDB.Database;
 declare var pouchdDBSessionSync: Sync;
-declare var lunrFullTextIndex: lunr.Index;
+declare var searchFullTextIndex: any;
 
 
 interface CustomStyle {
