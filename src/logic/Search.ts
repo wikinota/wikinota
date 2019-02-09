@@ -13,7 +13,6 @@ export default class Search {
             include_docs: true,
             attachments: true,
         }).then(result => {
-            console.debug("Indexing starting", result);
             searchFullTextIndex = elasticlunr(function () {
                 this.setRef('id')
                 this.addField('name')
@@ -27,11 +26,9 @@ export default class Search {
             for (const row of result.rows) {
                 if (Array.isArray(row)) {
                     for (const subrow of row) {
-                        console.log(subrow.doc);
                         searchFullTextIndex.addDoc(subrow.doc)
                     }
                 } else {
-                    console.log(row.doc);
                     searchFullTextIndex.addDoc(row.doc)
                 }
             }

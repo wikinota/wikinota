@@ -11,6 +11,11 @@ export default class textContentView extends HTMLElement {
 
     get composedStyle() {
         return cStyle.general + "\n" + `
+        
+        #text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
 
         ` + "\n" + cStyle.header;
     }
