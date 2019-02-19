@@ -5,7 +5,7 @@ import elasticlunr from "elasticlunr";
  */
 export default class Search {
     constructor() {
-        this.indexAllFiles();
+        // this.indexAllFiles();
     }
 
     indexAllFiles() {

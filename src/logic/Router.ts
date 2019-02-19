@@ -11,6 +11,7 @@ export default class Router {
     routingMap: RoutingMap = {
         "#dashboard": "dashboard-com",
         "#item": "textcontent-com",
+        "#login": "login-com",
     }
 
     createRouterSession() {

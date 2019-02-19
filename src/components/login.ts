@@ -43,14 +43,18 @@ export default class LoginCom extends HTMLElement {
 			#hashOutput {
 				word-break: break-all;
 			}
+			.loginmask input{
+				display: block;
+				margin-bottom: 5px;
+			}
         `+ "\n" + cStyle.login;
 
 		shadowRoot.innerHTML = `
             <style>${styles}</style>
-			<div>
-				<input id="email"></input>
-				<input id="password"></input>
-				<button id="send">Send</button>
+			<div class="loginmask">
+				<input id="email" type="email" placeholder="Email"></input>
+				<input id="password" type="password" placeholder="Password"></input>
+				<button id="send">Calculate Hash and Login</button>
 				<div id="loadingIndicator">Loading…</div>
 			</div>
 			<div id="hashOutput">

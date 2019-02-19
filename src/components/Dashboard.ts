@@ -24,11 +24,10 @@ export default class Dashboard extends HTMLElement {
         <style>${this.composedStyle}</style>
         <button id="openModal">OpenModal</button>
         <puttestdataintodb-com></puttestdataintodb-com>
-        <login-com></login-com>
         <inputtextcontent-com></inputtextcontent-com>
         <dbhistory-com></dbhistory-com>
         <modal-com id="modal" hidden>
-            Hellow!! this is from Slot!
+            <login-com></login-com>
         </modal-com>
         `;
 
