@@ -22,13 +22,14 @@ export default class Dashboard extends HTMLElement {
         shadowRoot.innerHTML = `
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
-        <button id="openModal">OpenModal</button>
+        <button id="openModal">Login</button>
         <puttestdataintodb-com></puttestdataintodb-com>
         <inputtextcontent-com></inputtextcontent-com>
         <dbhistory-com></dbhistory-com>
         <modal-com id="modal" hidden>
             <login-com></login-com>
         </modal-com>
+        <last100docs-com></last100docs-com>
         `;
 
 

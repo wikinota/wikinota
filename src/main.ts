@@ -12,6 +12,7 @@ import InputTextContent from "components/InputTextContent";
 import textContentView from "components/textContentView";
 import DBHistory from "components/DBHistory";
 import Modal from "components/modal";
+import last100Docs from "components/last100Docs";
 import DB from "logic/DB";
 new DB;
 const routersession = new Router;
@@ -30,5 +31,6 @@ customElements.define('inputtextcontent-com', InputTextContent);
 customElements.define('dbhistory-com', DBHistory);
 customElements.define('modal-com', Modal);
 customElements.define('textcontent-com', textContentView);
+customElements.define('last100docs-com', last100Docs);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");

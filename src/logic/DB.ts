@@ -16,11 +16,11 @@ class DB {
             PouchDB.plugin(CryptoPouch);
             (pouchdDBSession as any).crypto(userData.pwdHash);
 
-            pouchdDBSessionSync = PouchDB.sync('documentStore', 'http://wikinota.org:5984/xxx', ({
-                auth: {
-                    username: 'xxx',
-                    password: 'xxx'
-                },
+            pouchdDBSessionSync = PouchDB.sync('documentStore', 'https://db.wikinota.org/wikinota_demo', ({
+                // auth: {
+                //     username: 'xxx',
+                //     password: 'xxx'
+                // },
                 live: true,
                 retry: true
             } as any)).on('change', function (info: any) {
