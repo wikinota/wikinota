@@ -1,4 +1,5 @@
 import { cStyle } from "logic/CustomStyleIO";
+import marked from "marked";
 
 export default class textContentView extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -42,7 +43,7 @@ export default class textContentView extends HTMLElement {
         console.log("this.getAttribute(item)", this.getAttribute("item"))
         pouchdDBSession.get(this.getAttribute("item")).then((doc: any) => {
             console.debug("from DB:", doc);
-            textElement.innerText = doc.textContent;
+            textElement.innerHTML = marked(doc.textContent);
             tagsElement.innerText = doc.tags;
         }).catch(err => {
             console.error("ERROR:", "textcontent--" + this.getAttribute("text"), " --- ", err);

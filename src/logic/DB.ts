@@ -28,7 +28,7 @@ class DB {
                 console.debug("info", info)
             }).on('paused', function (err: any) {
                 // replication paused (e.g. replication up to date, user went offline)
-                console.debug("err", err)
+                console.debug("paused", err)
             }).on('active', function () {
                 console.debug("active")
                 // replicate resumed (e.g. new changes replicating, user went back online)
