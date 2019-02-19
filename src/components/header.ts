@@ -170,7 +170,7 @@ export default class HeaderCom extends HTMLElement {
             resulte.forEach((item: any) => {
                 const resultRow = document.createElement("a");
                 resultRow.innerText = item.ref.split(".")[0];
-                resultRow.href = "/#item?" + item.ref;
+                resultRow.href = "#item?" + item.ref;
                 resultElement.appendChild(resultRow);
             });
 
