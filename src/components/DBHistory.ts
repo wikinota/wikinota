@@ -43,7 +43,7 @@ export default class DBHistory extends HTMLElement {
         const title = <HTMLAnchorElement>document.createElement("a");
         const value = document.createElement("span");
         title.innerText = (doc as any).name;
-        title.href = "/#item?" + doc._id;
+        title.href = "#item?" + doc._id;
         title.classList.add("title");
         value.innerText = ((doc as any)["textContent"] as string).slice(0, 100);
         value.classList.add("value");
