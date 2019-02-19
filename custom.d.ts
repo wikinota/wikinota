@@ -7,3 +7,4 @@ declare module "webworker/hasher.worker.ts" {
 }
 
 declare module "elasticlunr";
+declare module "crypto-pouch";
