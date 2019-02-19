@@ -1,6 +1,7 @@
 import PouchDB from "pouchdb";
 import Search from "logic/Search";
-PouchDB.plugin(require('transform-pouch'));
+import userData from "./userData";
+import CryptoPouch from 'crypto-pouch';
 
 class DB {
     constructor() {
@@ -9,12 +10,20 @@ class DB {
 
     initiDatabaseIfNotExist() {
         if (pouchdDBSession == undefined) {
-            console.info("creating new PouchDB Session")
+            console.info("creating new PouchDB Session");
             pouchdDBSession = new PouchDB('documentStore');
-            pouchdDBSessionSync = PouchDB.sync('documentStore', 'http://wikinota.org:5984/wikinota_demo', {
+
+            PouchDB.plugin(CryptoPouch);
+            (pouchdDBSession as any).crypto(userData.pwdHash);
+
+            pouchdDBSessionSync = PouchDB.sync('documentStore', 'http://wikinota.org:5984/xxx', ({
+                auth: {
+                    username: 'xxx',
+                    password: 'xxx'
+                },
                 live: true,
                 retry: true
-            }).on('change', function (info: any) {
+            } as any)).on('change', function (info: any) {
                 // handle change
                 console.debug("info", info)
             }).on('paused', function (err: any) {

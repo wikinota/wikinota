@@ -114,7 +114,7 @@ export default class HeaderCom extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <header>
-        <a href="/dist">
+        <a href="#dashboard">
             <i class="fas fa-home"></i>
         </a>
         <span id="searchBar">
@@ -167,7 +167,7 @@ export default class HeaderCom extends HTMLElement {
 
             const resultElement = document.createElement("div");
 
-            resulte.forEach(item => {
+            resulte.forEach((item: any) => {
                 const resultRow = document.createElement("a");
                 resultRow.innerText = item.ref.split(".")[0];
                 resultRow.href = "/#item?" + item.ref;

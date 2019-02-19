@@ -11,6 +11,11 @@ export default class textContentView extends HTMLElement {
 
     get composedStyle() {
         return cStyle.general + "\n" + `
+        
+        #text {
+            max-width: 750px;
+            margin: 0 auto;
+        }
 
         ` + "\n" + cStyle.header;
     }
@@ -34,6 +39,7 @@ export default class textContentView extends HTMLElement {
     }
 
     goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {
+        console.log("this.getAttribute(item)", this.getAttribute("item"))
         pouchdDBSession.get(this.getAttribute("item")).then((doc: any) => {
             console.debug("from DB:", doc);
             textElement.innerText = doc.textContent;
