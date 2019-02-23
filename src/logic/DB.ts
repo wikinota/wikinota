@@ -5,7 +5,6 @@ import CryptoPouch from 'crypto-pouch';
 
 class DB {
     constructor() {
-        this.initiDatabaseIfNotExist();
     }
 
     reloadDataBase() {
@@ -30,15 +29,16 @@ class DB {
 
     initiDatabaseIfNotExist() {
         if (pouchdDBSession != undefined) return;
+        if (userData.username == undefined) return;
         if (userData.pwdHash == undefined) return;
 
         console.info("creating new PouchDB Session");
+        PouchDB.plugin(CryptoPouch);
         pouchdDBSession = new PouchDB('documentStore');
 
         // check if password was succesfully
         this.checkIfPasswordWasSuccesfully();
 
-        PouchDB.plugin(CryptoPouch);
         (pouchdDBSession as any).crypto(userData.pwdHash);
 
         pouchdDBSessionSync = PouchDB.sync('documentStore', 'https://db.wikinota.org/wikinota_' + userData.username, ({

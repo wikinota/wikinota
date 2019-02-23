@@ -14,7 +14,9 @@ import DBHistory from "components/DBHistory";
 import Modal from "components/modal";
 import last100Docs from "components/last100Docs";
 import DB from "logic/DB";
-new DB;
+const db = new DB;
+db.initiDatabaseIfNotExist();
+
 const routersession = new Router;
 routersession.createRouterSession();
 
