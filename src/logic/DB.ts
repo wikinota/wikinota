@@ -38,6 +38,7 @@ class DB {
 
         // check if password was succesfully
         this.checkIfPasswordWasSuccesfully();
+        console.debug("PWDHASH", userData.pwdHash);
 
         (pouchdDBSession as any).crypto(userData.pwdHash);
 
