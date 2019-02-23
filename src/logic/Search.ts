@@ -14,7 +14,7 @@ export default class Search {
             attachments: true,
         }).then(result => {
             searchFullTextIndex = elasticlunr(function () {
-                this.setRef('id')
+                this.setRef('_id')
                 this.addField('name')
                 this.addField('textContent')
                 this.addField('tags')
