@@ -53,8 +53,8 @@ export default class LoginCom extends HTMLElement {
 		shadowRoot.innerHTML = `
             <style>${styles}</style>
 			<div class="loginmask">
-				<input id="email" type="email" placeholder="Email"></input>
-				<input id="password" type="password" placeholder="Password"></input>
+				<input id="email" type="email" placeholder="Email" value="demo"></input>
+				<input id="password" type="password" placeholder="Password" value="omed"></input>
 				<button id="send">Calculate Hash and Login</button>
 				<div id="loadingIndicator">Loading…</div>
 			</div>
@@ -80,6 +80,8 @@ export default class LoginCom extends HTMLElement {
 		this.hashWorker = new WorkerHash();
 		this.hashWorker.postMessage([this.emailField.value, this.password.value]);
 		this.loadingIndicator.style.display = "block";
+
+		userData.username = this.emailField.value;
 
 		this.hashWorker.onmessage = (e) => {
 			userData.pwdHash = e.data;

@@ -1,4 +1,5 @@
 import elasticlunr from "elasticlunr";
+import userData from "./userData";
 
 /** 
  * TODO push indexing in service or webworker
@@ -9,6 +10,17 @@ export default class Search {
     }
 
     indexAllFiles() {
+        if (pouchdDBSession == undefined
+            || userData.username == undefined
+            || userData.pwdHash == undefined
+        ) {
+            console.error(
+                "userData.username", userData.username,
+                "userData.pwdHash", userData.pwdHash,
+                "pouchdDBSession", pouchdDBSession
+            );
+        };
+
         pouchdDBSession.allDocs({
             include_docs: true,
             attachments: true,
