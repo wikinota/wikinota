@@ -1,5 +1,6 @@
 import WorkerHash from 'webworker/hasher.worker.ts';
 import userData from 'logic/userData';
+import DB from 'logic/DB';
 import { cStyle } from "logic/CustomStyleIO";
 
 
@@ -84,6 +85,8 @@ export default class LoginCom extends HTMLElement {
 			userData.pwdHash = e.data;
 			this.hashOutput.textContent = e.data;
 			this.loadingIndicator.style.display = "none";
+			const db = new DB();
+			db.reloadDataBase();
 		};
 	}
 }
