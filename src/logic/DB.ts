@@ -1,7 +1,6 @@
 import PouchDB from "pouchdb";
 import Search from "logic/Search";
 import userData from "./userData";
-import CryptoPouch from 'crypto-pouch';
 
 class DB {
     constructor() {
@@ -23,25 +22,15 @@ class DB {
         })
     }
 
-    checkIfPasswordWasSuccesfully() {
-
-    }
-
     initiDatabaseIfNotExist() {
         if (pouchdDBSession != undefined) return;
         if (userData.username == undefined) return;
         if (userData.pwdHash == undefined) return;
 
         console.info("creating new PouchDB Session");
-        PouchDB.plugin(CryptoPouch);
         pouchdDBSession = new PouchDB('documentStore');
 
-        // check if password was succesfully
-        this.checkIfPasswordWasSuccesfully();
-        console.debug("PWDHASH", userData.pwdHash);
-
-        (pouchdDBSession as any).crypto(userData.pwdHash);
-
+        // das könnte eine sicherheuitsläcke sein xss
         pouchdDBSessionSync = PouchDB.sync('documentStore', 'https://db.wikinota.org/wikinota_' + userData.username, ({
             auth: {
                 username: userData.username,

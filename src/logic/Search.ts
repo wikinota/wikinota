@@ -41,6 +41,7 @@ export default class Search {
                         searchFullTextIndex.addDoc(subrow.doc)
                     }
                 } else {
+                    console.log(row.doc);
                     searchFullTextIndex.addDoc(row.doc)
                 }
             }
