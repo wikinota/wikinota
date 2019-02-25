@@ -12,6 +12,10 @@ export default class Modal extends HTMLElement {
 
     get composedStyle() {
         return cStyle.general + "\n" + `
+            #modalHost {
+                z-index: 5000;
+            }
+            
             #modalHost,
             .modalBackground {
                 position: absolute;

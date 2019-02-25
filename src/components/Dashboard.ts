@@ -23,9 +23,12 @@ export default class Dashboard extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <button id="openModal">Login</button>
-        <puttestdataintodb-com></puttestdataintodb-com>
-        <inputtextcontent-com></inputtextcontent-com>
+        <button id="openTextInputModal">Input Item</button>
         <dbhistory-com></dbhistory-com>
+
+        <modal-com id="textInputModal" hidden>
+            <inputtextcontent-com></inputtextcontent-com>
+        </modal-com>
         <modal-com id="modal" hidden>
             <login-com></login-com>
         </modal-com>
@@ -41,5 +44,13 @@ export default class Dashboard extends HTMLElement {
             const modal = this.shadowRoot.getElementById("modal");
             modal.removeAttribute("hidden");
         }
+
+        const elText = this.shadowRoot.getElementById("openTextInputModal");
+        elText.onclick = (ev) => {
+            const modal = this.shadowRoot.getElementById("textInputModal");
+            modal.removeAttribute("hidden");
+        }
+
+
     }
 }
