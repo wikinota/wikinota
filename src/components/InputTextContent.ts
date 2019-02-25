@@ -1,4 +1,5 @@
 import { cStyle } from "logic/CustomStyleIO";
+import { encryptItemData } from "logic/DB";
 
 export default class InputTextContent extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -49,13 +50,21 @@ export default class InputTextContent extends HTMLElement {
             error.innerHTML = " ";
             error.classList.remove("active");
 
-            pouchdDBSession.put({
+            const putObj = {
                 _id: name.value + ".text",
                 type: "text",
                 name: name.value,
-                textContent: textContent.value,
-                tags: tags.value
-            }).then((val) => {
+                cryptData: {
+                    textContent: textContent.value,
+                    tags: tags.value
+                }
+            };
+
+
+
+            pouchdDBSession.put(
+                encryptItemData(putObj)
+            ).then((val) => {
                 console.debug("PUT Text-Content into Store:", val)
             }).catch(err => {
                 console.error("PUT TO DB HAS AN ERROR:", err);

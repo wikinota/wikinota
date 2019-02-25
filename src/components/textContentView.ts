@@ -1,5 +1,6 @@
 import { cStyle } from "logic/CustomStyleIO";
 import marked from "marked";
+import { decryptItemData } from "logic/DB";
 
 export default class textContentView extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -42,9 +43,28 @@ export default class textContentView extends HTMLElement {
     goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {
         console.log("this.getAttribute(item)", this.getAttribute("item"))
         pouchdDBSession.get(this.getAttribute("item")).then((doc: any) => {
-            console.debug("from DB:", doc);
-            textElement.innerHTML = marked(doc.textContent);
-            tagsElement.innerText = doc.tags;
+
+            const rawDoc = decryptItemData(doc);
+            console.debug("from DB:", rawDoc);
+
+            if (rawDoc.cryptData != undefined && rawDoc.cryptData.textContent != undefined) {
+                textElement.innerHTML = marked(rawDoc.cryptData.textContent);
+            } else if (rawDoc.textContent != undefined) {
+                textElement.innerHTML = marked("!!!This data is not Crypted!!!  \n\n" + rawDoc.textContent);
+            } else {
+                textElement.innerHTML = marked("# no data");
+            }
+
+
+            if (rawDoc.cryptData != undefined && rawDoc.cryptData.tags != undefined) {
+                tagsElement.innerText = rawDoc.cryptData.tags;
+            } else if (rawDoc.tags != undefined) {
+                tagsElement.innerText = "!!!This data is not Crypted!!! >> " + rawDoc.tags;
+            } else {
+                tagsElement.innerText = "no data";
+            }
+
+
         }).catch(err => {
             console.error("ERROR:", "textcontent--" + this.getAttribute("text"), " --- ", err);
         });

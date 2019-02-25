@@ -1,6 +1,6 @@
 import elasticlunr from "elasticlunr";
 import userData from "./userData";
-
+import { decryptItemData } from "logic/DB";
 /** 
  * TODO push indexing in service or webworker
  */
@@ -38,11 +38,11 @@ export default class Search {
             for (const row of result.rows) {
                 if (Array.isArray(row)) {
                     for (const subrow of row) {
-                        searchFullTextIndex.addDoc(subrow.doc)
+                        searchFullTextIndex.addDoc(decryptItemData(subrow.doc));
                     }
                 } else {
-                    console.log(row.doc);
-                    searchFullTextIndex.addDoc(row.doc)
+                    console.log(decryptItemData(row.doc));
+                    searchFullTextIndex.addDoc(this.flattenDecryptData(decryptItemData(row.doc)));
                 }
             }
 
@@ -50,6 +50,24 @@ export default class Search {
         }).catch(function (err) {
             console.error("ERROR BY INDEXING: ", err);
         });
+    }
+
+    flattenDecryptData(decryptedItemData: PouchDB.Core.ExistingDocument<PouchDB.Core.AllDocsMeta>) {
+
+        console.log("BEFORE flatCryptoSeachtding", decryptedItemData, (decryptedItemData as any).cryptData);
+
+        let faltCryptDoc = {};
+        if ((decryptedItemData as any).cryptData == undefined) {
+            faltCryptDoc = decryptedItemData;
+        } else {
+
+            faltCryptDoc = Object.assign({}, decryptedItemData, (decryptedItemData as any).cryptData);
+            delete (faltCryptDoc as any)["cryptData"];
+        }
+
+
+        console.log("flatCryptoSeachtding", faltCryptDoc);
+        return faltCryptDoc;
     }
 }
 

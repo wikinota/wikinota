@@ -1,4 +1,5 @@
 import { cStyle } from "logic/CustomStyleIO";
+import { decryptItemData } from "logic/DB";
 
 export default class DBHistory extends HTMLElement {
     shadowRootDom: ShadowRoot = undefined
@@ -45,7 +46,7 @@ export default class DBHistory extends HTMLElement {
         title.innerText = (doc as any).name;
         title.href = "#item?" + doc._id;
         title.classList.add("title");
-        value.innerText = ((doc as any)["textContent"] as string).slice(0, 100);
+        value.innerText = ((doc as any)["cryptData"]["textContent"] as string).slice(0, 100);
         value.classList.add("value");
 
         newElement.appendChild(title);
@@ -77,7 +78,7 @@ export default class DBHistory extends HTMLElement {
         }).on('change', change => {
             this.setDocCount();
             console.debug("DB changed -> ", change);
-            this.addEventToList(change.doc);
+            this.addEventToList(decryptItemData(change.doc));
         });
     }
 }
