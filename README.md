@@ -11,7 +11,7 @@ The third focus is a collection of handy tools for evryday life. Like the "Geldl
 
 \* This wikipedia article is in german only - pls. help to translate it
 
-## Planed Fnuctions
+## Planed Functions
 - Wikipedia Like Pages with Markdown
 - Moneylog (called Geldlog)
 - Searchable
