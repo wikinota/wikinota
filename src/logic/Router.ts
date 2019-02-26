@@ -24,7 +24,7 @@ export default class Router {
     }
 
     urlChanged() {
-        const hash = window.location.hash;
+        const hash = decodeURI(window.location.hash);
         console.debug("Router: url changed:", hash);
 
         // if no hash query is there go to desktop

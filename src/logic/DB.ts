@@ -126,7 +126,7 @@ export function encryptItemData(doc: any) { // TODO type
 
     var cipher = forge.cipher.createCipher('AES-CBC', key);
     cipher.start({ iv: iv });
-    cipher.update(forge.util.createBuffer(JSON.stringify(doc.cryptData)));
+    cipher.update(forge.util.createBuffer(forge.util.encodeUtf8(JSON.stringify(doc.cryptData))));
     cipher.finish();
     var cipherText = forge.util.encode64(cipher.output.getBytes());
 
