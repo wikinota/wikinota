@@ -11,6 +11,7 @@ export default class Router {
     routingMap: RoutingMap = {
         "#dashboard": "dashboard-com",
         "#item": "textcontent-com",
+        "#edit": "textedit-com",
         "#login": "login-com",
     }
 
@@ -65,6 +66,10 @@ export default class Router {
 
         if (component == "textcontent-com") {
             routerDiv.innerHTML = `<${"textcontent-com"}  item="${parameter[1]}"></${component}>`;
+            return;
+        }
+        if (component == "textedit-com") {
+            routerDiv.innerHTML = `<${"textedit-com"}  item="${parameter[1]}"></${component}>`;
             return;
         }
 

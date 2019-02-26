@@ -9,6 +9,7 @@ import Dashboard from "components/Dashboard";
 import loginCom from "components/login";
 import InputTextContent from "components/InputTextContent";
 import textContentView from "components/textContentView";
+import textEditView from "components/textEditView";
 import DBHistory from "components/DBHistory";
 import Modal from "components/modal";
 import last100Docs from "components/last100Docs";
@@ -31,6 +32,7 @@ customElements.define('inputtextcontent-com', InputTextContent);
 customElements.define('dbhistory-com', DBHistory);
 customElements.define('modal-com', Modal);
 customElements.define('textcontent-com', textContentView);
+customElements.define('textedit-com', textEditView);
 customElements.define('last100docs-com', last100Docs);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");

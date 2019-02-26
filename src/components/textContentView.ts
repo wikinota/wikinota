@@ -19,6 +19,18 @@ export default class textContentView extends HTMLElement {
             margin: 0 auto;
         }
 
+        #pathBar {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 5px;
+            align-items: center;
+        }
+
+        #editButton {
+            margin-left: auto; 
+            margin-right: 0;
+        }
+
         ` + "\n" + cStyle.header;
     }
 
@@ -29,7 +41,9 @@ export default class textContentView extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <div class="itemTextContent">
-            <div id="title">Title: ${this.getAttribute("item")}</div>
+            <div id="pathBar">
+                <span id="title">Title: ${this.getAttribute("item")}</span> <button id="editButton" >EDIT</button>
+            </div>
             <hr>
             <div id="text"></div>
             <hr>
@@ -38,6 +52,10 @@ export default class textContentView extends HTMLElement {
         `;
 
         this.goToDB(shadowRoot.getElementById("text"), shadowRoot.getElementById("tags"));
+
+        shadowRoot.getElementById("editButton").onclick = () => {
+            window.location.href = "#edit?" + this.getAttribute("item");
+        };
     }
 
     goToDB(textElement: HTMLElement, tagsElement: HTMLElement) {

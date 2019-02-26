@@ -53,9 +53,6 @@ export default class Search {
     }
 
     flattenDecryptData(decryptedItemData: PouchDB.Core.ExistingDocument<PouchDB.Core.AllDocsMeta>) {
-
-        console.log("BEFORE flatCryptoSeachtding", decryptedItemData, (decryptedItemData as any).cryptData);
-
         let faltCryptDoc = {};
         if ((decryptedItemData as any).cryptData == undefined) {
             faltCryptDoc = decryptedItemData;
@@ -65,8 +62,6 @@ export default class Search {
             delete (faltCryptDoc as any)["cryptData"];
         }
 
-
-        console.log("flatCryptoSeachtding", faltCryptDoc);
         return faltCryptDoc;
     }
 }
