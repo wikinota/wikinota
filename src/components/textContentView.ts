@@ -31,6 +31,12 @@ export default class textContentView extends HTMLElement {
             margin-right: 0;
         }
 
+        a,
+        a:active,
+        a:visited {
+            color: #268bd2;
+        }
+
         ` + "\n" + cStyle.header;
     }
 
