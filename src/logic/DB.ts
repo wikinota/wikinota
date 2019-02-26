@@ -2,6 +2,9 @@ import PouchDB from "pouchdb";
 import Search from "logic/Search";
 import userData from "./userData";
 import forge from "node-forge";
+import pouchDbFind from "pouchdb-find";
+PouchDB.plugin(pouchDbFind);
+
 
 class DB {
     constructor() {
@@ -30,6 +33,10 @@ class DB {
 
         console.info("creating new PouchDB Session");
         pouchdDBSession = new PouchDB('documentStore' + userData.username);
+
+        pouchdDBSession.createIndex({
+            index: { fields: ["name"] }
+        });
 
         // das könnte eine sicherheuitsläcke sein xss
         pouchdDBSessionSync = PouchDB.sync('documentStore' + userData.username, 'https://db.wikinota.org/wikinota_' + userData.username, ({
@@ -90,7 +97,6 @@ export default DB;
 export function decryptItemData(doc: any) { // TODO type
     if (doc["cipher_text"] == undefined) return doc;
     const myObj = doc;
-    console.log("myObjIN", myObj);
 
     var salt = forge.util.decode64(myObj.salt)
     var iv = forge.util.decode64(myObj.iv);
@@ -107,7 +113,6 @@ export function decryptItemData(doc: any) { // TODO type
     delete myObj["salt"];
     delete myObj["iv"];
 
-    console.log("myObj", myObj);
     return myObj;
 }
 

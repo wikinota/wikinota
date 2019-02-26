@@ -41,7 +41,6 @@ export default class Search {
                         searchFullTextIndex.addDoc(decryptItemData(subrow.doc));
                     }
                 } else {
-                    console.log(decryptItemData(row.doc));
                     searchFullTextIndex.addDoc(this.flattenDecryptData(decryptItemData(row.doc)));
                 }
             }

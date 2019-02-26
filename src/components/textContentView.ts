@@ -37,6 +37,11 @@ export default class textContentView extends HTMLElement {
             color: #268bd2;
         }
 
+        underpaths-com {
+            display: block;
+            margin-top: 30px;
+        }
+
         ` + "\n" + cStyle.header;
     }
 
@@ -54,6 +59,7 @@ export default class textContentView extends HTMLElement {
             <div id="text"></div>
             <hr>
             <div id="tags">Tags:</div>
+            <underpaths-com name="${this.getAttribute("item").split(".")[0]}"></underpaths-com>
         </div>
         `;
 

@@ -13,6 +13,7 @@ import textEditView from "components/textEditView";
 import DBHistory from "components/DBHistory";
 import Modal from "components/modal";
 import last100Docs from "components/last100Docs";
+import underPaths from "components/underPaths";
 import DB from "logic/DB";
 const db = new DB;
 db.initiDatabaseIfNotExist();
@@ -34,5 +35,6 @@ customElements.define('modal-com', Modal);
 customElements.define('textcontent-com', textContentView);
 customElements.define('textedit-com', textEditView);
 customElements.define('last100docs-com', last100Docs);
+customElements.define('underpaths-com', underPaths);
 
 console.debug("XXXXX FIRST RENDER FINISHED XXXXX");
