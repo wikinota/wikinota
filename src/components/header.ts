@@ -110,6 +110,7 @@ export default class HeaderCom extends HTMLElement {
             display: flex;
             align-items: center;
             vertical-align: middle;
+
         }
 
         .right a {
@@ -137,9 +138,10 @@ export default class HeaderCom extends HTMLElement {
         <tooltip-com id="searchTooltip" hidden>
             Hellow World!
         </tooltip-com>
-        <span class="right" >
+        <span class="right" style="font-size: 15px;" >
             <a href="http://wikinota.org/impressum.html">Impressum</a>
             <a href="http://wikinota.org/datenschutz.html">Datenschutz</a>
+            <a href="https://help.github.com/en/articles/github-privacy-statement">Datenschutz (github)</a>
         </span>
         </header>
         <div id="outOfFocus" class="close"></div>
