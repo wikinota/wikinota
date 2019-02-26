@@ -34,7 +34,7 @@ export default class HeaderCom extends HTMLElement {
             padding:0;
             margin: 0;
             vertical-align:middle;
-            positon: relative;
+            position: relative;
         }
         span * {
             position: relative;
@@ -103,6 +103,18 @@ export default class HeaderCom extends HTMLElement {
             color: #fff;
             text-decoration: none;
         }
+
+        .right {
+            margin-left: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            vertical-align: middle;
+        }
+
+        .right a {
+            margin-left: 5px;
+        }
         
         `+ "\n" + cStyle.header;
     }
@@ -125,6 +137,10 @@ export default class HeaderCom extends HTMLElement {
         <tooltip-com id="searchTooltip" hidden>
             Hellow World!
         </tooltip-com>
+        <span class="right" >
+            <a href="http://wikinota.org/impressum.html">Impressum</a>
+            <a href="http://wikinota.org/datenschutz.html">Datenschutz</a>
+        </span>
         </header>
         <div id="outOfFocus" class="close"></div>
         `;
