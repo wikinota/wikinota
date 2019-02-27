@@ -1,3 +1,5 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/wikinota/wikinota/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wikinota/wikinota?targetFile=package.json)
+
 # wikinota
 wikinota is a selfhosted platform for you ideas and thoughts.
 The main focus is set to archiving and inspire new knowledge, through the structuring of thought paths.
