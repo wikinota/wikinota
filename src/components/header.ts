@@ -113,6 +113,10 @@ export default class HeaderCom extends HTMLElement {
 
         }
 
+        .fullsize{
+            flex-shrink: 0;
+        }
+
         .right a {
             margin-left: 5px;
         }
@@ -127,14 +131,16 @@ export default class HeaderCom extends HTMLElement {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.6.3/css/all.min.css" integrity="sha384-0t/JV0VqVTwxLAiMN7InD2kF+hreM+s1FynETAE/d21qGK7DuTjZGJ+QTB3BDCV/" crossorigin="anonymous">
         <style>${this.composedStyle}</style>
         <header>
-        <a href="#dashboard">
-            <i class="fas fa-home"></i>
-        </a>
-        <span id="searchBar">
-            <input id="searchInput"></input>
-            <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
-            <span id="searchBarButton" ><i class="fas fa-search"></i></span>
-        </span>
+        <div class="fullsize">
+            <a href="#dashboard">
+                <i class="fas fa-home"></i>
+            </a>
+            <span id="searchBar">
+                <input id="searchInput"></input>
+                <span id="searchBarCloseButton" ><i class="fas fa-times"></i></span>
+                <span id="searchBarButton" ><i class="fas fa-search"></i></span>
+            </span>
+        </div>
         <tooltip-com id="searchTooltip" hidden>
             Hellow World!
         </tooltip-com>
