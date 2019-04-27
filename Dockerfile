@@ -6,7 +6,10 @@ RUN apt-get -y install nginx git
 
 RUN git clone https://github.com/wikinota/wikinota.git
 
-RUN cp /wikinota/config/nginx-wikinota /etc/nginx/site-enabled
-RUN rm /etc/nginx/site-enabled/default
+RUN cp /wikinota/configs/nginx-wikinota /etc/nginx/sites-enabled/
+RUN rm /etc/nginx/sites-enabled/default
 
 EXPOSE 80 443
+
+ENTRYPOINT service nginx restart && bash
+
