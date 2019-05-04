@@ -1,15 +1,13 @@
-FROM ubuntu:19.04
+FROM nginx:alpine
 
-RUN apt-get update && apt-get -y upgrade && apt-get -y dist-upgrade
+RUN apk update
+RUN apk upgrade
 
-RUN apt-get -y install nginx git
+RUN apk add --update git
 
 RUN git clone https://github.com/wikinota/wikinota.git
 
-RUN cp /wikinota/configs/nginx-wikinota /etc/nginx/sites-enabled/
-RUN rm /etc/nginx/sites-enabled/default
+RUN cp /wikinota/configs/nginx-wikinota /etc/nginx/nginx-wikinota.conf
+#RUN rm /etc/nginx/default.conf
 
 EXPOSE 80 443
-
-ENTRYPOINT service nginx restart && bash
-

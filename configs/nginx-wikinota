@@ -4,6 +4,15 @@ server {
         root /wikinota/dist;
 	index index.html;
 	server_name _;
+
+	 gzip on;
+	 gzip_http_version 1.1;
+	 gzip_disable      "MSIE [1-6]\.";
+	 gzip_min_length   1100;
+	 gzip_vary         on;
+	 gzip_proxied      expired no-cache no-store private auth;
+	 gzip_types        text/plain text/css application/json 	
+
 	location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
