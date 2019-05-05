@@ -11,7 +11,7 @@ server {
 	 gzip_min_length   1100;
 	 gzip_vary         on;
 	 gzip_proxied      expired no-cache no-store private auth;
-	 gzip_types        text/plain text/css application/json 	
+	 gzip_types        text/plain text/css application/json;	
 
 	location / {
                 # First attempt to serve request as file, then
