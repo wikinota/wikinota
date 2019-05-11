@@ -1,4 +1,5 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/wikinota/wikinota/badge.svg?targetFile=package.json)](https://snyk.io/test/github/wikinota/wikinota?targetFile=package.json)
+[![Build Status](https://travis-ci.org/wikinota/wikinota.svg?branch=master)](https://travis-ci.org/wikinota/wikinota)
 
 # wikinota
 wikinota is a selfhosted platform for you ideas and thoughts.
