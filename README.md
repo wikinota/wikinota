@@ -17,10 +17,11 @@ The third focus is a collection of handy tools for evryday life.
 - Searchable pages
 - theme css system
 - plugin system
+### Planed Functions (long time)
 - todo
 - time logging
 - project management
-### Planed Functions (FUTURE)
+#### Planed Functions (FUTURE)
 - money log
 - file store for bureaucracy (with OCR)
 - quantified self monitoring
