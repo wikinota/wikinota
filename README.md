@@ -13,9 +13,18 @@ The third focus is a collection of handy tools for evryday life.
 
 \* This wikipedia article is in german only - pls. help to translate it
 
-## Planed Functions
+## Planed Functions (MVP)
 - Wikipedia Like Pages with Markdown
-- Searchable
+- Searchable pages
+- plugin system
+- todo
+- time logging
+- project management
+### Planed Functions (FUTURE)
+- money log
+- file store for bureaucracy (with OCR)
+- quantified self monitoring
+
 
 ## Version
 V6.0.0-preAlpha-0
