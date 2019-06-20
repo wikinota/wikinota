@@ -5,6 +5,8 @@
 wikinota is a selfhosted platform for you ideas and thoughts.
 The main focus is set to archiving and inspire new knowledge, through the structuring of thought paths.
 
+Written in pure TypeScript without any dependencies.
+
 This structure is inspired by the [Zettelkasten*](https://de.wikipedia.org/wiki/Zettelkasten) model.
 
 The second focus is to provide a way to search through this structure of pages, to find relevant informations.
