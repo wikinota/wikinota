@@ -16,6 +16,7 @@ The third focus is a collection of handy tools for evryday life.
 ## Planed Functions (MVP)
 - Wikipedia Like Pages with Markdown
 - Searchable pages
+- theme css system
 - plugin system
 - todo
 - time logging
